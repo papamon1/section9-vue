@@ -132,7 +132,7 @@
       // quiere decir que cuando se resulevan todas ellas, entonces entra en el bloque then
 
       Promise.all([this.fetchMeetups(), this.fetchCategories()])
-        .then((results) => this.pageLoader_resolveData())
+        .then((results) => this.pageLoader_resolveData(results))
         .catch((err) => {
           console.error(err)
           this.pageLoader_resolveData()

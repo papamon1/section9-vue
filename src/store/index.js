@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import meetups from './modules/meetups'
 import threads from './modules/threads'
 import categories from './modules/categories'
+import auth from './modules/auth'
 
 Vue.use(Vuex)
 
@@ -11,7 +12,8 @@ export default new Vuex.Store({
     modules:{
         meetups,
         categories,
-        threads
+        threads,
+        auth
     },
     //Simple functions to mutate the state
     //Estas funciones las mantenemos aquí porque las queremos compartir entre todos los modulos de la store
