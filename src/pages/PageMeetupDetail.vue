@@ -159,7 +159,7 @@
             meetup: state => state.meetups.item,
             threads: state => state.threads.items
           }),
-        ...mapGetters(['testingGetter']),            
+        // ...mapGetters(['testingGetter']),            
           meetupCreator(){
             return this.meetup.meetupCreator || {}
           }

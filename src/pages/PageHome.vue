@@ -8,7 +8,7 @@
         <AppDropdown />
         <button class="button is-primary is-pulled-right m-r-sm">Create Meetups</button>
         <router-link :to="{name: 'PageMeetupFind'}" class="button is-primary is-pulled-right m-r-sm">All</router-link>
-        <h1>{{ testingGetter }}</h1>
+        <h1></h1>
       </div>
       <div class="row columns is-multiline">
          <MeetupItem v-for="meetup in meetups"
@@ -168,7 +168,7 @@
         meetups: state => state.meetups.items,
         categories: state => state.categories.items
       }),
-      ...mapGetters(['testingGetter'])
+      // ...mapGetters(['testingGetter'])
       //Acepta que le pasemos un objeto, si queremos un alias para el getter, le podemos cambiar el nombre pasandoselo como clave del objeto
       // ...mapGetters({
       //   deOtraForma: 'testingGetter'

@@ -90,7 +90,9 @@
             login(){                
                 this.$v.form.$touch()
                 // console.log(form)
-                this.$store.dispatch('auth/loginWithEmailAndPassword', this.form);      
+                this.$store.dispatch('auth/loginWithEmailAndPassword', this.form)
+                  .then(()=>{this.$router.push('/')})
+                  .catch(err=>console.log(err))   
                 // this.auth.loginWithEmailAndPassword(this.form)
             }
                    

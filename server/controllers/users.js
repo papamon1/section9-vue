@@ -13,22 +13,33 @@ exports.getUsers = function(req, res) {
   });
 }
 
+exports.getCurrentUser=function(req,res,next){
+  const user=req.user;
+
+  if(!user){
+    return res.sendStatus(422);    
+  }
+  return res.json(user);
+}
+
 
 exports.register = function(req, res) {
   const registerData = req.body
 
-  if (email) {
+  if (!registerData.email) {
     return res.status(422).json({
       errors: {
-        email: 'is required'
+        email: 'is required',
+        message: 'Email is required'
       }
     })
   }
 
-  if (password) {
+  if (!registerData.password) {
     return res.status(422).json({
       errors: {
-        password: 'is required'
+        password: 'is required',
+        message: 'Password is required'
       }
     })
   }
@@ -36,7 +47,8 @@ exports.register = function(req, res) {
   if (registerData.password !== registerData.passwordConfirmation) {
     return res.status(422).json({
       errors: {
-        password: 'is not the same as confirmation password'
+        password: 'is not the same as confirmation password',
+        message: 'Password is not the same as confirmation password'
       }
     })
   }
@@ -44,12 +56,9 @@ exports.register = function(req, res) {
   const user = new User(registerData);
 
   return user.save((errors, savedUser) => {
-    if (errors) {
-      return res.status(422).json({errors})
-    }
-
-    return res.json(savedUser)
-  })
+    if (errors) { return res.status(422).json({errors}) };
+   
+    })
 }
 
 exports.login = function(req, res, next) {
@@ -98,6 +107,7 @@ exports.login = function(req, res, next) {
 }
 
 exports.logout = function(req,res) {
+  console.log('logout')
   req.logout()
   return res.json({status:'Sesiondestroyed!'})
 }
